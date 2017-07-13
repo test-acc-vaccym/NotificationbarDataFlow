@@ -20,11 +20,10 @@ class MainService : TileService() {
         qsTile.label = tm.simOperatorName
         if (tm.dataState == 0) {
             qsTile.state = Tile.STATE_ACTIVE
-            qsTile.updateTile()
         } else {
             qsTile.state = Tile.STATE_INACTIVE
-            qsTile.updateTile()
         }
+        qsTile.updateTile()
     }
 
     override fun onClick() {
@@ -32,23 +31,21 @@ class MainService : TileService() {
         if (tm.dataState == 0) {
             ShellUtils.execCommand("svc data enable", true)
             qsTile.state = Tile.STATE_INACTIVE
-            qsTile.updateTile()
         } else {
             ShellUtils.execCommand("svc data disable", true)
             qsTile.state = Tile.STATE_ACTIVE
-            qsTile.updateTile()
         }
+        qsTile.updateTile()
     }
 
     override fun onStartListening() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         if (tm.dataState == 0) {
             qsTile.state = Tile.STATE_ACTIVE
-            qsTile.updateTile()
         } else {
             qsTile.state = Tile.STATE_INACTIVE
-            qsTile.updateTile()
         }
+        qsTile.updateTile()
     }
 
     override fun onStopListening() {
