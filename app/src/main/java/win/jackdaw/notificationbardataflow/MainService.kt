@@ -1,6 +1,7 @@
 package win.jackdaw.notificationbardataflow
 
 import android.content.Context
+import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.telephony.TelephonyManager
@@ -16,43 +17,38 @@ class MainService : TileService() {
     }
 
     override fun onTileAdded() {
+        super.onTileAdded()
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        qsTile.label = tm.simOperatorName
+        val tile: Tile = qsTile
         if (tm.dataState == 0) {
-            qsTile.state = Tile.STATE_ACTIVE
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
         } else {
-            qsTile.state = Tile.STATE_INACTIVE
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
-        qsTile.updateTile()
+        tile.updateTile()
     }
 
     override fun onClick() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val tile: Tile = qsTile
         if (tm.dataState == 0) {
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
             ShellUtils.execCommand("svc data enable", true)
-            qsTile.state = Tile.STATE_INACTIVE
         } else {
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
             ShellUtils.execCommand("svc data disable", true)
-            qsTile.state = Tile.STATE_ACTIVE
         }
-        qsTile.updateTile()
+        tile.updateTile()
     }
 
     override fun onStartListening() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val tile: Tile = qsTile
         if (tm.dataState == 0) {
-            qsTile.state = Tile.STATE_ACTIVE
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
         } else {
-            qsTile.state = Tile.STATE_INACTIVE
+            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
-        qsTile.updateTile()
-    }
-
-    override fun onStopListening() {
-        super.onStopListening()
-    }
-
-    override fun onTileRemoved() {
-        super.onTileRemoved()
+        tile.updateTile()
     }
 }
