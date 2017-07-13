@@ -27,11 +27,11 @@ public class ShellUtils {
         return execCommand(new String[]{command}, isRoot, true);
     }
 
-    public static CommandResult execCommand(String command, boolean isRoot, boolean isNeedResultMsg) {
+    private static CommandResult execCommand(String command, boolean isRoot, boolean isNeedResultMsg) {
         return execCommand(new String[]{command}, isRoot, isNeedResultMsg);
     }
 
-    public static CommandResult execCommand(String[] commands, boolean isRoot, boolean isNeedResultMsg) {
+    private static CommandResult execCommand(String[] commands, boolean isRoot, boolean isNeedResultMsg) {
         int result = -1;
         if (commands == null || commands.length == 0) {
             return new CommandResult(result, null, null);
@@ -97,37 +97,17 @@ public class ShellUtils {
                 : errorMsg.toString());
     }
 
-    /**
-     * result of command
-     * <ul>
-     * <li>{@link CommandResult#result} means result of command, 0 means normal, else means error, same to excute in
-     * linux shell</li>
-     * <li>{@link CommandResult#successMsg} means success message of command result</li>
-     * <li>{@link CommandResult#errorMsg} means error message of command result</li>
-     * </ul>
-     *
-     * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2013-5-16
-     */
     public static class CommandResult {
 
-        /**
-         * result of command
-         **/
-        public int result;
-        /**
-         * success message of command result
-         **/
-        public String successMsg;
-        /**
-         * error message of command result
-         **/
-        public String errorMsg;
+        int result;
+        String successMsg;
+        String errorMsg;
 
         public CommandResult(int result) {
             this.result = result;
         }
 
-        public CommandResult(int result, String successMsg, String errorMsg) {
+        CommandResult(int result, String successMsg, String errorMsg) {
             this.result = result;
             this.successMsg = successMsg;
             this.errorMsg = errorMsg;
