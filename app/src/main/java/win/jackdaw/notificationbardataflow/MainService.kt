@@ -25,6 +25,7 @@ class MainService : TileService() {
         } else {
             tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
+        tile.state = Tile.STATE_ACTIVE
         tile.updateTile()
     }
 
@@ -49,6 +50,7 @@ class MainService : TileService() {
         } else {
             tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
+        tile.state = Tile.STATE_ACTIVE
         tile.updateTile()
     }
 }
