@@ -18,6 +18,7 @@ class MainService : TileService() {
 
     override fun onTileAdded() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        qsTile.label = tm.simOperatorName
         if (tm.dataState == 0) {
             qsTile.icon = Icon.createWithResource(applicationContext, R.drawable.data_disable)
             qsTile.updateTile()

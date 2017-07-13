@@ -20,9 +20,9 @@
         </activity>
 
         <service
+            android:label="@string/tile_label"
             android:name=".MainService"
             android:icon="@drawable/data_disable"
-            android:label="@string/label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
