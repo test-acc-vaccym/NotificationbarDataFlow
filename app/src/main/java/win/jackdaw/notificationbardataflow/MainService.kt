@@ -25,21 +25,28 @@ class MainService : TileService() {
         } else {
             tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
-        tile.state = Tile.STATE_ACTIVE
-        tile.updateTile()
+        tile.run {
+            state = Tile.STATE_ACTIVE
+            updateTile()
+        }
     }
 
     override fun onClick() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val tile: Tile = qsTile
         if (tm.dataState == 0) {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
+            tile.run {
+                icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
+                updateTile()
+            }
             ShellUtils.execCommand("svc data enable", true)
         } else {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
+            tile.run {
+                icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
+                updateTile()
+            }
             ShellUtils.execCommand("svc data disable", true)
         }
-        tile.updateTile()
     }
 
     override fun onStartListening() {
@@ -50,7 +57,9 @@ class MainService : TileService() {
         } else {
             tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
         }
-        tile.state = Tile.STATE_ACTIVE
-        tile.updateTile()
+        tile.run {
+            state = Tile.STATE_ACTIVE
+            updateTile()
+        }
     }
 }
