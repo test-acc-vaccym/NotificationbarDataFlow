@@ -20,13 +20,10 @@ class MainService : TileService() {
         super.onTileAdded()
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val tile: Tile = qsTile
-        if (tm.dataState == 0) {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
-        } else {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
-        }
+        val data_state = tm.dataState
         tile.run {
-            state = Tile.STATE_ACTIVE
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_icon_disable else R.drawable.data_icon)
+            state = if (data_state == 0) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
             updateTile()
         }
     }
@@ -34,31 +31,23 @@ class MainService : TileService() {
     override fun onClick() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val tile: Tile = qsTile
-        if (tm.dataState == 0) {
-            tile.run {
-                icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
-                updateTile()
-            }
-            ShellUtils.execCommand("svc data enable", true)
-        } else {
-            tile.run {
-                icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
-                updateTile()
-            }
-            ShellUtils.execCommand("svc data disable", true)
+        val data_state = tm.dataState
+        tile.run {
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_icon else R.drawable.data_icon_disable)
+            state = if (data_state == 0) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
+            updateTile()
         }
+        ShellUtils.execCommand(if (data_state == 0) "svc data enable" else "svc data disable", true)
     }
 
     override fun onStartListening() {
+        super.onStartListening()
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val tile: Tile = qsTile
-        if (tm.dataState == 0) {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon_disable)
-        } else {
-            tile.icon = Icon.createWithResource(applicationContext, R.drawable.data_icon)
-        }
+        val data_state = tm.dataState
         tile.run {
-            state = Tile.STATE_ACTIVE
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_icon_disable else R.drawable.data_icon)
+            state = if (data_state == 0) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
             updateTile()
         }
     }
