@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">通知栏数据网开关</string>
-    <string name="version">1.2.5</string>
+    <string name="version">1.2.1</string>
     <string name="tile_label">数据网络</string>
 </resources>
