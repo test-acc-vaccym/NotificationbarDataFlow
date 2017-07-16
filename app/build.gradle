@@ -11,11 +11,13 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.2.1"
+        resConfigs "zh"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
