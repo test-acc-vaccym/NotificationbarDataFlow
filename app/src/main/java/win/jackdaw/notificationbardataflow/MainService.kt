@@ -5,6 +5,7 @@ import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.telephony.TelephonyManager
+import android.util.Log
 import win.jackdaw.notificationbardataflow.util.ShellUtils
 
 /**
@@ -32,6 +33,7 @@ class MainService : TileService() {
         val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val tile: Tile = qsTile
         val data_state = tm.dataState
+        Log.e("数据网状态", data_state.toString())
         tile.run {
             icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_enable else R.drawable.data_disable)
             state = if (data_state == 0) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
