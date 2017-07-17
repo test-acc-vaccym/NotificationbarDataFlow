@@ -21,7 +21,7 @@
 
         <service
             android:name=".MainService"
-            android:icon="@drawable/data_enable"
+            android:icon="@drawable/data_disable"
             android:label="@string/tile_label"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

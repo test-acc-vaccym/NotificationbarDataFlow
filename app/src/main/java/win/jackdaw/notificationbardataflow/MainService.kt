@@ -22,7 +22,7 @@ class MainService : TileService() {
         val tile: Tile = qsTile
         val data_state = tm.dataState
         tile.run {
-            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_enable else R.drawable.data_enable)
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_disable else R.drawable.data_enable)
             state = if (data_state == 0) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
             updateTile()
         }
@@ -33,7 +33,7 @@ class MainService : TileService() {
         val tile: Tile = qsTile
         val data_state = tm.dataState
         tile.run {
-            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_enable else R.drawable.data_enable)
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_enable else R.drawable.data_disable)
             state = if (data_state == 0) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
             updateTile()
         }
@@ -46,7 +46,7 @@ class MainService : TileService() {
         val tile: Tile = qsTile
         val data_state = tm.dataState
         tile.run {
-            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_enable else R.drawable.data_enable)
+            icon = Icon.createWithResource(applicationContext, if (data_state == 0) R.drawable.data_disable else R.drawable.data_enable)
             state = if (data_state == 0) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
             updateTile()
         }
